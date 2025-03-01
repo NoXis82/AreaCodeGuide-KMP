@@ -9,3 +9,10 @@ fun RegionEntity.toRegion(): Region {
         nameRegion = this.nameRegion
     )
 }
+
+fun Region.toRegionEntity(): RegionEntity {
+    return RegionEntity(
+        code = this.code,
+        nameRegion = this.nameRegion
+    )
+}
