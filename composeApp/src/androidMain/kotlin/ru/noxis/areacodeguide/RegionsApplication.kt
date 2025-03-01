@@ -4,7 +4,7 @@ import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import ru.noxis.areacodeguide.di.initKoin
 
-class RegionsApplication: Application() {
+class RegionsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
