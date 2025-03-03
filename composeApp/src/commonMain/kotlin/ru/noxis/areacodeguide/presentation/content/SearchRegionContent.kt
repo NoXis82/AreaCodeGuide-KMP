@@ -109,7 +109,7 @@ internal fun SearchRegionBox(
                 )
             }
 
-            state().searchResults.isEmpty() && state().searchResults.isNotEmpty() -> {
+            state().searchResults.isEmpty() -> {
                 Text(
                     text = stringResource(Res.string.not_found),
                     style = TextStyle(
@@ -120,55 +120,60 @@ internal fun SearchRegionBox(
                 )
             }
         }
-
         Surface(
             shape = RoundedCornerShape(32.dp),
-            border = BorderStroke(width = 16.dp, color = Color.Black)
+            border = BorderStroke(width = 6.dp, color = Color.White)
         ) {
-            Column(
-                modifier = Modifier.padding(16.dp).fillMaxWidth().height(IntrinsicSize.Min),
-                horizontalAlignment = Alignment.CenterHorizontally
+            Surface(
+                modifier = Modifier.padding(4.dp),
+                shape = RoundedCornerShape(32.dp),
+                border = BorderStroke(width = 16.dp, color = Color.Black)
             ) {
-                OutlinedTextField(
-                    value = state().searchQuery,
-                    onValueChange = {
-                        onAction(RegionAction.OnSearchQueryChange(it))
-                    },
-                    singleLine = true,
-                    colors = OutlinedTextFieldDefaults.colors(
-                        cursorColor = Color.Black,
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent
-                    ),
-                    keyboardActions = KeyboardActions(
-                        onSearch = {
-                            onImeSearch()
-                        }
-                    ),
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number,
-                        imeAction = ImeAction.Search
-                    ),
-                    textStyle = TextStyle(
-                        color = Color.Black,
-                        fontSize = 100.sp,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    leadingIcon = {},
-                    trailingIcon = {},
-                )
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    modifier = Modifier.padding(16.dp).fillMaxWidth().height(IntrinsicSize.Min),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("RUS", fontSize = 60.sp, fontWeight = FontWeight.Light)
-                    Spacer(modifier = Modifier.width(16.dp))
-                    Image(
-                        painter = painterResource(Res.drawable.flag_russia),
-                        contentDescription = ""
+                    OutlinedTextField(
+                        value = state().searchQuery,
+                        onValueChange = {
+                            onAction(RegionAction.OnSearchQueryChange(it))
+                        },
+                        singleLine = true,
+                        colors = OutlinedTextFieldDefaults.colors(
+                            cursorColor = Color.Black,
+                            unfocusedBorderColor = Color.Transparent,
+                            focusedBorderColor = Color.Transparent
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onSearch = {
+                                onImeSearch()
+                            }
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number,
+                            imeAction = ImeAction.Search
+                        ),
+                        textStyle = TextStyle(
+                            color = Color.Black,
+                            fontSize = 100.sp,
+                            fontWeight = FontWeight.Bold
+                        ),
+                        leadingIcon = {},
+                        trailingIcon = {},
                     )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text("RUS", fontSize = 60.sp, fontWeight = FontWeight.Light)
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Image(
+                            painter = painterResource(Res.drawable.flag_russia),
+                            contentDescription = ""
+                        )
+                    }
                 }
             }
         }

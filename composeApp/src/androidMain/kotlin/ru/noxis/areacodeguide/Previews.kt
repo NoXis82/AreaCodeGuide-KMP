@@ -22,7 +22,5 @@ private fun SearchRegionBoxPreview() {
 @Composable
 @Preview
 private fun SplashBoxPreview() {
-    SplashBox {
-        SplashState()
-    }
+    SplashBox(state =  { SplashState(navigateToSearchContent = true) }) {}
 }

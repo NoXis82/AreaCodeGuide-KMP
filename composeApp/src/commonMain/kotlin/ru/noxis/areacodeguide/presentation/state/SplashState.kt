@@ -6,5 +6,6 @@ import ru.noxis.areacodeguide.core.presentation.UiText
 @Immutable
 data class SplashState(
     val isLoading: Boolean = false,
-    val error: UiText? = null
+    val error: UiText? = null,
+    val navigateToSearchContent: Boolean = false
 )
