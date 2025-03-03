@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import areacodeguide.composeapp.generated.resources.Res
 import areacodeguide.composeapp.generated.resources.flag_russia
+import areacodeguide.composeapp.generated.resources.ic_check_circle_ok
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 import ru.noxis.areacodeguide.presentation.state.SplashState
@@ -29,15 +31,19 @@ import ru.noxis.areacodeguide.presentation.viewmodel.SplashViewModel
 
 @Composable
 fun SplashContent(
-    viewModel: SplashViewModel = koinViewModel()
+    viewModel: SplashViewModel = koinViewModel(),
+    navigateToSearchContent: () -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    SplashBox { state }
+    SplashBox(state = { state }) {
+        navigateToSearchContent.invoke()
+    }
 }
 
 @Composable
 internal fun SplashBox(
-    state: () -> SplashState
+    state: () -> SplashState,
+    navigateToSearchContent: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize().background(Color.Black),
@@ -72,18 +78,17 @@ internal fun SplashBox(
                         )
                     )
                 }
-                else -> {
-                    Text(
-                        "DB_INIT_OK",
-                        style = TextStyle(
-                            fontSize = 14.sp,
-                            color = Color.White,
-                            textAlign = TextAlign.Center
-                        )
-                    )
-                }
 
+                state().navigateToSearchContent -> {
+                    Image(
+                        modifier = Modifier.size(64.dp),
+                        painter = painterResource(Res.drawable.ic_check_circle_ok),
+                        contentDescription = null
+                    )
+                    navigateToSearchContent.invoke()
+                }
             }
+
             Text(
                 "Версия:1.0.0",
                 style = TextStyle(

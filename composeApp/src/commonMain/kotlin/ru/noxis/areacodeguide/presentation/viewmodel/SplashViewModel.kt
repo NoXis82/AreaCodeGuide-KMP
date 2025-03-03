@@ -31,7 +31,7 @@ class SplashViewModel(
         regionsRepository.getRegions()
             .onStart {
                 _state.update {
-                    it.copy(isLoading = true)
+                    it.copy(isLoading = true, navigateToSearchContent = false)
                 }
             }
             .onEach { regions ->
@@ -40,14 +40,15 @@ class SplashViewModel(
                         .onSuccess {
                             delay(1500)
                             _state.update {
-                                it.copy(isLoading = false, error = null)
+                                it.copy(isLoading = false, error = null, navigateToSearchContent = true)
                             }
                         }
                         .onError {
                             _state.update { state ->
                                 state.copy(
                                     isLoading = false,
-                                    error = it.toUiText()
+                                    error = it.toUiText(),
+                                    navigateToSearchContent = false
                                 )
                             }
                         }
@@ -55,7 +56,7 @@ class SplashViewModel(
 
                 delay(1500)
                 _state.update {
-                    it.copy(isLoading = false, error = null)
+                    it.copy(isLoading = false, error = null, navigateToSearchContent = true)
                 }
             }.launchIn(viewModelScope)
     }
