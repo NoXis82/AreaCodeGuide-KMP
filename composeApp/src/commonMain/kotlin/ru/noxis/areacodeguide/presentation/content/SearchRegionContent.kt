@@ -83,9 +83,8 @@ internal fun SearchRegionBox(
             .fillMaxSize()
             .statusBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly
+        verticalArrangement = Arrangement.Center
     ) {
-
         when {
             state().errorMessage != null -> {
                 Text(
@@ -121,11 +120,12 @@ internal fun SearchRegionBox(
             }
         }
         Surface(
+            modifier = Modifier.fillMaxWidth().padding(64.dp),
             shape = RoundedCornerShape(32.dp),
             border = BorderStroke(width = 6.dp, color = Color.White)
         ) {
             Surface(
-                modifier = Modifier.padding(4.dp),
+                modifier = Modifier.fillMaxWidth().padding(4.dp),
                 shape = RoundedCornerShape(32.dp),
                 border = BorderStroke(width = 16.dp, color = Color.Black)
             ) {
@@ -155,7 +155,7 @@ internal fun SearchRegionBox(
                         ),
                         textStyle = TextStyle(
                             color = Color.Black,
-                            fontSize = 100.sp,
+                            fontSize = 32.sp,
                             fontWeight = FontWeight.Bold
                         ),
                         leadingIcon = {},
@@ -163,11 +163,10 @@ internal fun SearchRegionBox(
                     )
 
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("RUS", fontSize = 60.sp, fontWeight = FontWeight.Light)
+                        Text("RUS", fontSize = 32.sp, fontWeight = FontWeight.Light)
                         Spacer(modifier = Modifier.width(16.dp))
                         Image(
                             painter = painterResource(Res.drawable.flag_russia),
