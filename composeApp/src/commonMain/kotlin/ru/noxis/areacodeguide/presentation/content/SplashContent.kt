@@ -17,14 +17,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import areacodeguide.composeapp.generated.resources.Res
-import areacodeguide.composeapp.generated.resources.flag_russia
+import areacodeguide.composeapp.generated.resources.app_name
+import areacodeguide.composeapp.generated.resources.car
 import areacodeguide.composeapp.generated.resources.ic_check_circle_ok
+import areacodeguide.composeapp.generated.resources.xerography_regular
+import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import ru.noxis.areacodeguide.presentation.state.SplashState
 import ru.noxis.areacodeguide.presentation.viewmodel.SplashViewModel
@@ -56,8 +61,18 @@ internal fun SplashBox(
             verticalArrangement = Arrangement.Bottom
         ) {
             Image(
-                painter = painterResource(Res.drawable.flag_russia),
-                contentDescription = ""
+                modifier = Modifier.size(200.dp),
+                painter = painterResource(Res.drawable.car),
+                contentDescription = null
+            )
+            Text(
+                text = stringResource(Res.string.app_name),
+                fontFamily = FontFamily(Font(Res.font.xerography_regular)),
+                style = TextStyle(
+                    fontSize = 64.sp,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
             )
         }
         Spacer(Modifier.height(64.dp))
@@ -90,7 +105,7 @@ internal fun SplashBox(
             }
 
             Text(
-                "Версия:1.0.0",
+                text = "1.0.0",
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color.White,

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+    <string name="app_name">NOMEROK</string>
     <string name="error_disk_full">Упс, похоже, ваш диск переполнен.</string>
     <string name="error_unknown">Упс, что-то пошло не так.</string>
     <string name="not_found">Регион не найден</string>
