@@ -130,7 +130,7 @@ internal fun SearchRegionBox(
                 border = BorderStroke(width = 16.dp, color = Color.Black)
             ) {
                 Column(
-                    modifier = Modifier.padding(16.dp).fillMaxWidth().height(IntrinsicSize.Min),
+                    modifier = Modifier.padding(16.dp).fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     OutlinedTextField(
@@ -158,8 +158,8 @@ internal fun SearchRegionBox(
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold
                         ),
-                        leadingIcon = {},
-                        trailingIcon = {},
+                       // leadingIcon = {},
+                       // trailingIcon = {},
                     )
 
                     Row(

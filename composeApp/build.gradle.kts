@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -102,3 +103,13 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
+android.applicationVariants.all {
+    val variant = this
+    variant.outputs.
+        map { it as BaseVariantOutputImpl }
+        .forEach { output ->
+            val builtType = variant.buildType.name
+            val versionName = variant.versionName
+            output.outputFileName = "NomerOk-${builtType}-${versionName}.apk"
+        }
+}
